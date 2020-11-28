@@ -19,7 +19,8 @@ fs.writeFile('./text.txt', 'What is up there?', () => {
 })
 */
 
-directories
+// directories
+/*
 if (!fs.existsSync('./doc')) {
     fs.mkdir('./doc', (err) => {
         if(err){
@@ -27,4 +28,19 @@ if (!fs.existsSync('./doc')) {
         }
         console.log('Folder Created.');
     })
-}S
+} else {
+    fs.rmdir('./doc', (err) => {
+        if (err){
+            console.log(err);
+        }
+        console.log('Folder Removed');
+    })
+}
+*/
+
+// deleteing files
+if(fs.existsSync('./text.txt')) {
+    fs.unlink('./text.txt', () => {
+        console.log('File Deleted.');
+    })
+}
