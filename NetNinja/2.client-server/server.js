@@ -9,6 +9,7 @@ const server = http.createServer((req, res) => {
     // res.write('<h2>Hello and Welcome!</h2>');
     // res.end;
 
+    // send html file
     fs.readFile('./index.html', (err, data) => {
         if (err){
             console.log(err);
