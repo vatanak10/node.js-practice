@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
     // res.sendFile('./html/index.html', {root: __dirname});
 
-    res.render('index');
+    res.render('index', {title: 'Home'});
 });
 
 app.get('/about', (req, res) => {
@@ -22,7 +22,7 @@ app.get('/about', (req, res) => {
 
     // res.sendFile('./html/about.html', {root: __dirname});
 
-    res.render('about');
+    res.render('about', {title: 'About Us'});
 });
 
 // redirects
@@ -31,7 +31,7 @@ app.get('about-us', (req, res) => {
 });
 
 app.get('/blogs/create', (req, res) => {
-    res.render('create');
+    res.render('create', {title: 'Create Blog'});
 });
 
 // 404 redirects
@@ -41,5 +41,5 @@ app.use((req, res) => {
 
     // res.status(404).sendFile('./html/404.html', {root: __dirname});
 
-    res.status(404).render('404');
+    res.status(404).render('404', {title: 'Not Found'});
 });
