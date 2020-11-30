@@ -10,11 +10,17 @@ app.listen(3000);
 
 // listen for request
 app.get('/', (req, res) => {
+    const blogs = [
+        {title: 'They listen to you', snippet: 'Anytime you need to talk, your partner is there to listen. You both know you have each other’s emotional support and that your partner is not a burden for you.' },
+        {title: 'They want to help you', snippet: 'When someone is in love with you, they feel the need to help you. Your personal growth and development is a win for them, too.' },
+        {title: 'They remember tiny details about you', snippet: 'Those who are in love with us tend to remember a lot of what we say and what we do.' },
+        {title: 'They love you', snippet: 'When someone loves you, you can tell by the way that they treat you.' },
+    ];
     // res.send('<p>Send Nudes</p>');
 
     // res.sendFile('./html/index.html', {root: __dirname});
 
-    res.render('index', {title: 'Home'});
+    res.render('index', {title: 'Home', blogs});
 });
 
 app.get('/about', (req, res) => {
