@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/vatanak10/node.js-practice#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "loadash": "^1.0.0"
   }
 }
