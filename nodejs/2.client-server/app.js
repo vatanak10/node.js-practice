@@ -3,6 +3,8 @@ const morgan = require('morgan');
 
 // express app
 const app = express();
+// CONNECT TO MONGODB
+const dburi = 'mongodb+srv://Arzel:supervampire@nodejs-practice.oru6o.mongodb.net/<dbname>?retryWrites=true&w=majority'
 
 // register view engine
 app.set('view engine', 'ejs');
