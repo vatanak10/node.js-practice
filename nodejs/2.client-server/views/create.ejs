@@ -1,11 +1,12 @@
 <html lang="en">
-<head>
+<!-- <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Ninja | <%= title %></title>
-</head>
+    <title>Blog Ninja | <%= title %> </title>
+</head> replaced with:-->
+<%- include('./partials/head.ejs')  %> 
 <body>
-    <nav>
+    <!-- <nav>
         <div class="site-title">
             <a href="/"><h1>Blog Ninja</h1></a>
             <p>A Net Ninja Site</p>
@@ -15,7 +16,9 @@
             <li><a href="/about">About</a></li>
             <li><a href="/blogs/create">New blog</a></li>
         </ul>
-    </nav>
+    </nav> replaced with:-->
+
+    <%- include('./partials/nav.ejs') %>
 
     <div class="create-blog content">
         <form>
@@ -28,5 +31,7 @@
             <button>Submit</button>
         </form>
     </div>
+
+    <%- include('./partials/footer.ejs')  %> 
 </body>
 </html>
