@@ -76,6 +76,7 @@ app.get('/single-blog', (req, res) => {
 
 // listen for request
 app.get('/', (req, res) => {
+    
     const blogs = [
         {title: 'They listen to you', snippet: 'Anytime you need to talk, your partner is there to listen. You both know you have each other’s emotional support and that your partner is not a burden for you.' },
         {title: 'They want to help you', snippet: 'When someone is in love with you, they feel the need to help you. Your personal growth and development is a win for them, too.' },
@@ -86,7 +87,9 @@ app.get('/', (req, res) => {
 
     // res.sendFile('./html/index.html', {root: __dirname});
 
-    res.render('index', {title: 'Home', blogs});
+    // res.render('index', {title: 'Home', blogs});
+
+    res.redirect('/blogs');
 });
 
 app.get('/about', (req, res) => {
@@ -101,6 +104,17 @@ app.get('/about', (req, res) => {
 app.get('about-us', (req, res) => {
     res.redirect('/about');
 });
+
+// BLOG routes
+app.get('/blogs', (res,req) => {
+    Blog.find()
+        .then((result) => {
+            res.render('index', {title: 'All Blogs', blogs: result});
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+})
 
 app.get('/blogs/create', (req, res) => {
     res.render('create', {title: 'Create Blog'});
