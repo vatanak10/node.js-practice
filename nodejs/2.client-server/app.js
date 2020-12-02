@@ -33,8 +33,12 @@ app.use((req,res,next) => {
 */
 // app.use(morgan('dev'));
 app.use(morgan('tiny'));
+// Middleware and static files
+// app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 
 // Mongoose and Mongo sandbox route
+/*
 app.get('/add-blog', (req, res) => {
     const blog = new Blog({
         title: 'new blog',
@@ -69,10 +73,8 @@ app.get('/single-blog', (req, res) => {
         .catch((err) => {
             console.log(err);
         });
-})
-
-// Middleware and static files
-// app.use(express.static('public'));
+});
+*/
 
 // listen for request
 app.get('/', (req, res) => {
@@ -83,13 +85,14 @@ app.get('/', (req, res) => {
         {title: 'They remember tiny details about you', snippet: 'Those who are in love with us tend to remember a lot of what we say and what we do.' },
         {title: 'They love you', snippet: 'When someone loves you, you can tell by the way that they treat you.' },
     ];
+    
     // res.send('<p>Send Nudes</p>');
 
     // res.sendFile('./html/index.html', {root: __dirname});
 
-    // res.render('index', {title: 'Home', blogs});
+    res.render('index', {title: 'Home', blogs});
 
-    res.redirect('/blogs');
+    // res.redirect('/blogs'); 
 });
 
 app.get('/about', (req, res) => {
@@ -106,7 +109,7 @@ app.get('about-us', (req, res) => {
 });
 
 // BLOG routes
-app.get('/blogs', (res,req) => {
+app.get('/blogs', (req,res) => {
     Blog.find()
         .then((result) => {
             res.render('index', {title: 'All Blogs', blogs: result});
@@ -114,6 +117,30 @@ app.get('/blogs', (res,req) => {
         .catch((err) => {
             console.log(err);
         });
+});
+
+
+app.post('/blogs', (req, res) => {
+    // console.log(req.body);
+    const blog = new Blog(req.body);
+
+    blog.save()
+        .then((result)=> {
+            res.redirect('/blogs');
+            console.log('blog success...');
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+});
+
+app.get('/blogs/:id', (req, res)=> {
+    const id = req.params.id;
+    // console.log(id);
+    Blog.findById(id)
+        .then(result => {
+            res.send('Success');
+        })
 })
 
 app.get('/blogs/create', (req, res) => {
