@@ -108,6 +108,10 @@ app.get('about-us', (req, res) => {
     res.redirect('/about');
 });
 
+app.get('/blogs/create', (req, res) => {
+    res.render('create', {title: 'Create Blog'});
+});
+
 // BLOG routes
 app.get('/blogs', (req,res) => {
     Blog.find()
@@ -139,13 +143,24 @@ app.get('/blogs/:id', (req, res)=> {
     // console.log(id);
     Blog.findById(id)
         .then(result => {
-            res.send('Success');
+            res.render('single-blog', {blog: result, title: 'Blog Details'});
         })
+        .catch(err => {
+            console.log(err);
+        });
+});
+
+app.delete('/blogs/:id', (req,res) => {
+    const id = req.params.id;
+
+    Blog.findByIdAndDelete(id)
+        .then(result => {
+            res.json({ redirect: '/blogs'});
+        })
+        .catch(err => console.log(err));
 })
 
-app.get('/blogs/create', (req, res) => {
-    res.render('create', {title: 'Create Blog'});
-});
+
 
 // 404 redirects
 // must be at the bottom so that if the rest of the path doesn't match, then it will return this 404 file.
