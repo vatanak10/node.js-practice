@@ -111,7 +111,7 @@ app.get('about-us', (req, res) => {
 
 
 // blogRoutes
-app.use(blogRoutes);
+app.use('/blogs', blogRoutes); // router scope
 
 
 // 404 redirects
