@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/post', (req, res)=>{
+router.get('/blog', (req, res)=>{
     res.send({type:'GET'});
 });
 
-router.post('/post', (req, res)=>{
+router.post('/blog', (req, res)=>{
     res.send({type:'POST'});
     console.log(req.body);
 });
 
-router.put('/post/:id', (req, res)=>{
+router.put('/blog/:id', (req, res)=>{
     res.send({type:'PUT'});
 });
 
-router.delete('/post/:id', (req, res)=>{
+router.delete('/blog/:id', (req, res)=>{
     res.send({type:'DELETE'});
 });
 
