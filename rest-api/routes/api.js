@@ -7,6 +7,7 @@ router.get('/post', (req, res)=>{
 
 router.post('/post', (req, res)=>{
     res.send({type:'POST'});
+    console.log(req.body);
 });
 
 router.put('/post/:id', (req, res)=>{
