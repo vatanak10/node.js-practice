@@ -3,14 +3,17 @@ const User = require('../models/user');
 // handling error
 const handleErrors = (err) => {
     console.log(err.message, err.code);
-    let error = {email: '',  password: ''};
+    let errors = {email: '',  password: ''};
 
     // validation err
     if (err.message.includes('user validation failed')) {
         Object.values(err.errors).forEach(({properties}) => {
-            console.log(properties); 
+            // console.log(properties); 
+            errors[properties.path] = properties.message;
         });
     }
+
+    return errors;
 }
 
 const signup_get = (req, res) => {
@@ -29,7 +32,7 @@ const signup_post = async (req, res) => {
         res.status(201).json(user);
     } catch(err){
         const errors = handleErrors(err);
-        res.status(400).send('error, user not created');
+        res.status(400).json({ errors }); 
     }
 }
 
