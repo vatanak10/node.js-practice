@@ -5,6 +5,12 @@ const handleErrors = (err) => {
     console.log(err.message, err.code);
     let errors = {email: '',  password: ''};
 
+    // duplication error
+    if(err.code == 11000){
+        errors.email = 'the email is already registered.';
+        return errors;
+    }
+
     // validation err
     if (err.message.includes('user validation failed')) {
         Object.values(err.errors).forEach(({properties}) => {
